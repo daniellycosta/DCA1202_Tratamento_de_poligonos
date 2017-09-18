@@ -13,8 +13,8 @@ public:
     float getY();
     Point operator +(Point p1);
     Point operator -(Point p1);
-    float norma();
-    void translada(float a, float b);
+    double norma();
+    void translada(float a=0, float b=0);
     void imprime();
 };
 
