@@ -1,4 +1,4 @@
-#include "rectangle.h"
+#include "retangulo.h"
 
 Retangulo::Retangulo(){
 
