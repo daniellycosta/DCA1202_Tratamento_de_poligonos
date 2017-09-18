@@ -1,33 +1,40 @@
-#include "polygon.h"
+#include "poligono.h"
 #include<cmath>
 #include<iostream>
 
 using namespace std;
 
-Polygon::Polygon(){
+Poligono::Poligono(){
     vertices = nullptr;
 }
 
-Polygon::operator +(Point _vertice){
-    Polygon ret;
+Poligono::operator +(Ponto _vertice){
+    Poligono ret;
     int tamAntigo = numVertices(vertices);
 
-//conferindo se o usuario estah repetindo vertices
+    //conferindo se ainda se pode add vertices
+    if(tamAntigo == 100){
+        return;
+    }
+    else{
+
+    //conferindo se o usuario estah repetindo vertices
     for(int i=0; i<tamAntigo, i++){
         if(vetores[i] == _vertice){
             return;
         }
     }
-//alocando novo array de vertices com tamanho novo
-    ret = new Point[tamAntigo+1];
+    //alocando novo array de vertices com tamanho novo
+    ret = new Ponto[tamAntigo+1];
 
-    memcpy(ret,vertices,tamAntigo*sizeof(Point));
+    memcpy(ret,vertices,tamAntigo*sizeof(Ponto));
 
     ret[tamAntigo].x = _vertice.x;
     ret[tamAntigo].y = _vertice.y;
 
     return ret;
 
+    }
 }
 
 
@@ -36,16 +43,23 @@ Polygon::operator +(Point _vertice){
 *
 */
 
-int Polygon::numVertices(Point *arrayVertices){
+int Poligono::numVertices(){
     int i;
+
+    if(vertices == nullptr){
+        return 0;
+    }
+    else{
+
     for(i=0; i<100; i++){
-        if(!arrayVertices[i].x & !arrayVertices[i].y){
-            if(!arrayVertices[i+1].x & !arrayVertices[i+1].y){
+        if(!vertices[i].x & !vertices[i].y){
+            if(!vertices[i+1].x & !vertices[i+1].y){
                 return i;
             }
         }
     }
     return i;
+    }
 }
 
 /**@brief Calcula a área do polígono usando as coordenadas de seus vértices
@@ -56,8 +70,9 @@ int Polygon::numVertices(Point *arrayVertices){
 *
 * */
 
-double Polygon::area(Point *vertices, int nVert){
+double Poligono::area(){
     double area = 0.5;
+    int nVert = numVertices(vertices);
     double diagPrinc=0;
     double diagSec=0;
 
@@ -78,7 +93,19 @@ double Polygon::area(Point *vertices, int nVert){
         return area;
 }
 
-void Polygon::print(){
+void Poligono::translada(float a, float b){
+    int nVert = numVertices(vertices);
+    for(int i=0; i<nVert, i++){
+        vertices[i].x += a;
+        vertices[i].y += b;
+    }
+}
+
+void Poligono::rotate(float theta, Ponto p0){
+
+}
+
+void Poligono::print(){
     int nVertices = numVertices(vertices);
     for(int i=0, i<nVertices, i++){
         vertices[i].imprime();

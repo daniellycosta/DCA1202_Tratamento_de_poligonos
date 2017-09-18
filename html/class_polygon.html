@@ -79,21 +79,21 @@ Diagrama de heranças da classe Polygon</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
-<tr class="memitem:a1ef47b98e579dd5e53744980fb822ab2"><td class="memItemLeft" align="right" valign="top"><a id="a1ef47b98e579dd5e53744980fb822ab2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addVertex</b> (<a class="el" href="class_point.html">Point</a> _vertex)</td></tr>
-<tr class="separator:a1ef47b98e579dd5e53744980fb822ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab9e9609b0ec0991f0be9099f4d48673"><td class="memItemLeft" align="right" valign="top"><a id="aab9e9609b0ec0991f0be9099f4d48673"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numVertices</b> (<a class="el" href="class_point.html">Point</a> *v)</td></tr>
-<tr class="separator:aab9e9609b0ec0991f0be9099f4d48673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d27f464e639e59f55d83a0fdc083df"><td class="memItemLeft" align="right" valign="top"><a id="ac1d27f464e639e59f55d83a0fdc083df"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="class_point.html">Point</a> _vertice)</td></tr>
+<tr class="separator:ac1d27f464e639e59f55d83a0fdc083df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc626ddf33524bf44d91bfc524ac3a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_polygon.html#a1fc626ddf33524bf44d91bfc524ac3a6">numVertices</a> (<a class="el" href="class_point.html">Point</a> *arrayVertices)</td></tr>
+<tr class="memdesc:a1fc626ddf33524bf44d91bfc524ac3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao testa se tem dois vertices na coordenada (0,0), ja que o construtor inicializa todo o array com 0s.  <a href="#a1fc626ddf33524bf44d91bfc524ac3a6">Mais...</a><br /></td></tr>
+<tr class="separator:a1fc626ddf33524bf44d91bfc524ac3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1605b702a19992a4631aa1011092c0c1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_polygon.html#a1605b702a19992a4631aa1011092c0c1">area</a> (<a class="el" href="class_point.html">Point</a> *vertices, int nVert)</td></tr>
 <tr class="memdesc:a1605b702a19992a4631aa1011092c0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula a área do polígono usando as coordenadas de seus vértices.  <a href="#a1605b702a19992a4631aa1011092c0c1">Mais...</a><br /></td></tr>
 <tr class="separator:a1605b702a19992a4631aa1011092c0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a082ff056dc124290a464b0b718212d02"><td class="memItemLeft" align="right" valign="top"><a id="a082ff056dc124290a464b0b718212d02"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>translada</b> (float a, float b)</td></tr>
 <tr class="separator:a082ff056dc124290a464b0b718212d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f7ef8b0f44d5d063989f777c6afdbe9"><td class="memItemLeft" align="right" valign="top"><a id="a7f7ef8b0f44d5d063989f777c6afdbe9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (float theta)</td></tr>
-<tr class="separator:a7f7ef8b0f44d5d063989f777c6afdbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92deeb29207aa09a86dd5a8384688848"><td class="memItemLeft" align="right" valign="top"><a id="a92deeb29207aa09a86dd5a8384688848"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (float theta, <a class="el" href="class_point.html">Point</a> p0)</td></tr>
+<tr class="separator:a92deeb29207aa09a86dd5a8384688848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60830487fc3c6b815aa577e9dd758b51"><td class="memItemLeft" align="right" valign="top"><a id="a60830487fc3c6b815aa577e9dd758b51"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
 <tr class="separator:a60830487fc3c6b815aa577e9dd758b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,12 +157,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>imprime</b> ()</td></
 </div><div class="memdoc">
 
 <p>Calcula a área do polígono usando as coordenadas de seus vértices. </p>
-<p>O algoritmo do cálculo da área funciona como se as coordenadas dos vértices tivessem sido organizados em uma tabela, repetindo-se as primeiras coordenadas na última linha, e em-seguida tivessem sido multiplicadas e somadas todas as diagonais principais , operação feita em </p><dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">diagPrinc</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O algoritmo do cálculo da área funciona como se as coordenadas dos vértices tivessem sido organizados em uma tabela, repetindo-se as primeiras coordenadas na última linha, e em-seguida tivessem sido multiplicadas e somadas todas as diagonais principais e secundárias. Em seguida, </p>
+
+</div>
+</div>
+<a id="a1fc626ddf33524bf44d91bfc524ac3a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fc626ddf33524bf44d91bfc524ac3a6">&#9670;&nbsp;</a></span>numVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Polygon::numVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_point.html">Point</a> *&#160;</td>
+          <td class="paramname"><em>arrayVertices</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcao testa se tem dois vertices na coordenada (0,0), ja que o construtor inicializa todo o array com 0s. </p>
 
 </div>
 </div>

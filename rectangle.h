@@ -2,10 +2,10 @@
 #define RECTANGLE_H
 
 
-class Rectangle
+class Retangulo
 {
 public:
-    Rectangle();
+    Retangulo();
 };
 
 #endif // RECTANGLE_H

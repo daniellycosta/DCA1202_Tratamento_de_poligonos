@@ -1,57 +1,58 @@
-#include "point.h"
+#include "ponto.h"
 #include<math.h>
 #include<iostream>
 
 using namespace std;
 
-Point::Point(){
+Ponto::Ponto(){
     x=0;
     y=0;
 }
 
-void Point::setX(float _x){
+void Ponto::setX(float _x){
     x = _x;
 }
-void Point::setY(float _y){
+void Ponto::setY(float _y){
     y = _y;
 }
 
-void Point::setXY(float _x, float _y){
+void Ponto::setXY(float _x, float _y){
     x = _x;
     y = _y;
 }
 
-float Point::getX(){
+float Ponto::getX(){
     return x;
 }
 
-float Point::getY(){
+float Ponto::getY(){
     return y;
 }
 
-Point Point::operator +(Point p1){
-    Point ret;
+Ponto Ponto::operator +(Ponto p1){
+    Ponto ret;
     ret.x = x + p1.x;
     ret.y = y + p1.y;
     return ret;
 }
 
-Point Point::operator -(Point p1){
-    Point ret;
+Ponto Ponto::operator -(Ponto p1){
+    Ponto ret;
     ret.x = x - p1.x;
     ret.y = y - p1.y;
     return ret;
 }
 
-double Point::norma(){
+//como add nova origem ao ponto?
+double Ponto::norma(){
     return (sqrt((x*x) + (y*y)));
 }
 
-void Point::translada(float a, float b){
+void Ponto::translada(float a, float b){
     x = x + a;
     y = y + b;
 }
 
-void Point::imprime(){
+void Ponto::imprime(){
     cout << "(" << x << ", " << y << ")\n";
 }

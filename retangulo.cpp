@@ -1,6 +1,5 @@
 #include "rectangle.h"
 
-Retangulo::Retangulo()
-{
+Retangulo::Retangulo(){
 
 }
