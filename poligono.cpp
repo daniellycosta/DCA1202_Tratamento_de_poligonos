@@ -103,9 +103,11 @@ void Poligono::translada(float a, float b){
     }
 }
 
+//EM TORNO DA ORIGEM!!! IMPLEMENTAR PARA OUTROS CASOS
 void Poligono::rotate(float theta, Ponto p0){
     int nVertices = numVertices(vertices);
     double anguloAnt;
+
     for(int i=0, i<nVertices, i++){
         if(vertices[i].x != p0.x && vertices[i].y != p0.y){
             cosAngAnt = (vertices[i].norma())/vertices[i].x;
@@ -119,9 +121,11 @@ void Poligono::rotate(float theta, Ponto p0){
 
 void Poligono::print(){
     int nVertices = numVertices(vertices);
+
     for(int i=0, i<nVertices, i++){
         vertices[i].imprime();
-        cout >> "->";
+        if(i<nVertices-1){
+            cout >> " -> ";
+        }
     }
-
 }

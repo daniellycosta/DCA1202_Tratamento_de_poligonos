@@ -1,8 +1,9 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
+#include "poligono.h"
 
+class Retangulo: public Poligono {
 
-class Retangulo{
 public:
     Retangulo();
 };
