@@ -4,13 +4,15 @@
 
 class Polygon : public Point{
 private:
-    Point vertices[100];
+    Point *vertices;
+    int nVertices;
 public:
-    void addVertex(Point _vertex);
-    int numVertices(Point *v);
+    Polygon();
+    operator + (Point _vertice);
+    int numVertices(Point *arrayVertices);
     double area(Point *vertices, int nVert);
     void translada(float a, float b);
-    void rotate(float theta);
+    void rotate(float theta, Point p0);
     void print();
 };
 
