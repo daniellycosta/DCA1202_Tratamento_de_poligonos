@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['numvertices',['numVertices',['../class_polygon.html#a1fc626ddf33524bf44d91bfc524ac3a6',1,'Polygon']]]
+  ['numvertices',['numVertices',['../class_poligono.html#a85c509901a031000fc3b9247de2a8d76',1,'Poligono']]]
 ];

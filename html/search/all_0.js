@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['area',['area',['../class_polygon.html#a1605b702a19992a4631aa1011092c0c1',1,'Polygon']]]
+  ['area',['area',['../class_poligono.html#a7490b5dcca22558b603f6c1f735f3678',1,'Poligono']]]
 ];
