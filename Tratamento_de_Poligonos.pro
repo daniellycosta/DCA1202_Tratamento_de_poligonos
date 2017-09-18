@@ -9,6 +9,6 @@ SOURCES += main.cpp \
     ponto.cpp
 
 HEADERS += \
-    point.h \
-    polygon.h \
-    rectangle.h
+    ponto.h \
+    poligono.h \
+    retangulo.h

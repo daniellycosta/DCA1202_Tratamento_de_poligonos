@@ -1,7 +1,7 @@
 #include <iostream>
-#include<point.h>
-#include<polygon.h>
-#include<rectangle.h>
+#include<ponto.h>
+#include<poligono.h>
+#include<retangulo.h>
 
 using namespace std;
 

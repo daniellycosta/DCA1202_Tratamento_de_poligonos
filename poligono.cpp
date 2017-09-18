@@ -2,6 +2,8 @@
 #include<cmath>
 #include<iostream>
 
+#define PI 3.14159265
+
 using namespace std;
 
 Poligono::Poligono(){
@@ -102,7 +104,17 @@ void Poligono::translada(float a, float b){
 }
 
 void Poligono::rotate(float theta, Ponto p0){
+    int nVertices = numVertices(vertices);
+    double anguloAnt;
+    for(int i=0, i<nVertices, i++){
+        if(vertices[i].x != p0.x && vertices[i].y != p0.y){
+            cosAngAnt = (vertices[i].norma())/vertices[i].x;
+            anguloAnt = acos(cosAngAnt) * 180.0 / PI;
 
+            vertices[i].x = (vertices[i].norma()) * cos(anguloAnt + theta);
+            vertices[i].y = (vertices[i].norma()) * sin(anguloAnt + theta);
+        }
+    }
 }
 
 void Poligono::print(){

@@ -2,18 +2,18 @@
 #define POINT_H
 
 
-class Point{
+class Ponto{
 private:
     float x,y;
 public:
-    Point();
+    Ponto();
     void setX(float _x=0);
     void setY(float _y=0);
     void setXY(float _x=0,float _y=0);
     float getX();
     float getY();
-    Point operator +(Point p1);
-    Point operator -(Point p1);
+    Ponto operator +(Ponto p1);
+    Ponto operator -(Ponto p1);
     double norma();
     void translada(float a=0, float b=0);
     void imprime();

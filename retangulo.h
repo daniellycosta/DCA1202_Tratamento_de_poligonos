@@ -2,8 +2,7 @@
 #define RECTANGLE_H
 
 
-class Retangulo
-{
+class Retangulo{
 public:
     Retangulo();
 };

@@ -1,17 +1,17 @@
 #ifndef POLYGON_H
 #define POLYGON_H
-#include "point.h"
+#include "ponto.h"
 
-class Polygon : public Point{
+class Poligono : public Ponto{
 private:
-    Point *vertices;
+    Ponto *vertices;
 public:
-    Polygon();
-    operator + (Point _vertice);
+    Poligono();
+    operator + (Ponto _vertice);
     int numVertices();
     double area();
     void translada(float a, float b);
-    void rotate(float theta, Point p0);
+    void rotate(float theta, Ponto p0);
     void print();
 };
 
