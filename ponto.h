@@ -7,6 +7,7 @@ private:
     float x,y;
 public:
     Ponto();
+    ~Ponto();
     void setX(float _x=0);
     void setY(float _y=0);
     void setXY(float _x=0,float _y=0);

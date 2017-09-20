@@ -7,6 +7,7 @@ private:
     Ponto *vertices;
 public:
     Poligono();
+    ~Poligono();
     operator + (Ponto _vertice);
     int numVertices();
     double area();

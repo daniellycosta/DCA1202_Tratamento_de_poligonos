@@ -5,8 +5,12 @@
 using namespace std;
 
 Ponto::Ponto(){
-    x=0;
-    y=0;
+    float x=0;
+    float y=0;
+}
+
+Ponto::~Ponto(){
+ cout << "[PON] Destruindo ponto...\n";
 }
 
 void Ponto::setX(float _x){
