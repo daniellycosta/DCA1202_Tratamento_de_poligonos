@@ -7,43 +7,66 @@
 using namespace std;
 
 Poligono::Poligono(){
+
     vertices = nullptr;
+
+    /*vertices = new Ponto[100];
+
+    for(int i=0; i<100; i++){
+        vertices[i].setXY(0.0,0.0);
+    }*/
 }
 
 Poligono::~Poligono(){
     cout<<"[POL]Destruindo poligono...\n";
-    delete vertices;
+    delete[]vertices;
 }
 
-Poligono::operator +(Ponto _vertice){
-    Poligono ret;
-    int tamAntigo = numVertices(vertices);
+//Poligono Poligono::operator =(Poligono _poligono){
+//    if(vertices != nullptr){
+//        for(int i=0; i<numVertices(); i++){
+//            _poligono[i]->setXY(vertices[i].getX(), vertices[i].getY());
+//        }
+//    }
+//    return _poligono;
+//}
 
-    //conferindo se ainda se pode add vertices
-    if(tamAntigo == 100){
-        cout << "[POL] Erro! Poligono com tamanho max\n";
-        return;
-    }
-    else{
 
-    //conferindo se o usuario estah repetindo vertices
-    for(int i=0; i<tamAntigo, i++){
-        if(vetores[i] == _vertice){
-            return;
-        }
-    }
-    //alocando novo array de vertices com tamanho novo
-    ret = new Ponto[tamAntigo+1];
+//Poligono Poligono::operator+(Ponto _vertice){
+//    Poligono ret;
+//    int tamAntigo = numVertices();
 
-    memcpy(ret,vertices,tamAntigo*sizeof(Ponto));
+//    //conferindo se ainda se pode add vertices
 
-    ret[tamAntigo].x = _vertice.x;
-    ret[tamAntigo].y = _vertice.y;
+//    if(tamAntigo == 100){
+//        cout << "[POL] Erro! Poligono com tamanho max\n";
+//        return *this;
+//    }
 
-    return ret;
+//    else{
 
-    }
-}
+//        //conferindo se o usuario estah repetindo vertices
+
+//        for(int i=0; i<tamAntigo; i++){
+//            if(vertices[i].getX() == _vertice.getX() && vertices[i].getY() == _vertice.getY()){
+//                cout << "[POL] Erro! Poligono com vertices repetidos\n";
+//                return *this;
+//            }
+//        }
+
+//        //alocando novo array de vertices com tamanho novo
+
+//        ret = new Poligono[tamAntigo+1];
+//        memcpy(ret,vertices,tamAntigo*sizeof(Ponto));
+
+//        for(int i=0; i<tamAntigo; i++){
+//            ret[i].setXY(vertices[i].getX(), vertices[i].getY());
+//        }
+//        ret = vertices;
+//        ret[tamAntigo].setXY(_vertice.getX(),_vertice.getY());
+//        return ret;
+//    }
+//}
 
 
 /**@brief Funcao testa se tem dois vertices na coordenada (0,0), ja que o construtor inicializa todo o array com 0s
@@ -54,20 +77,14 @@ Poligono::operator +(Ponto _vertice){
 int Poligono::numVertices(){
     int i;
 
-    if(vertices == nullptr){
-        return 0;
-    }
-    else{
-
     for(i=0; i<100; i++){
-        if(!vertices[i].x & !vertices[i].y){
-            if(!vertices[i+1].x & !vertices[i+1].y){
+        if(i<99 && !vertices[i].getX() && !vertices[i].getY()){
+            if(!vertices[i+1].getX() && !vertices[i+1].getY()){
                 return i;
             }
         }
     }
-    return i;
-    }
+    return i+1;
 }
 
 /**@brief Calcula a área do polígono usando as coordenadas de seus vértices
@@ -89,17 +106,17 @@ int Poligono::numVertices(){
 
 double Poligono::area(){
     double area = 0.5;
-    int nVert = numVertices(vertices);
+    int nVert = numVertices();
     double diagPrinc=0;
     double diagSec=0;
 
-    for(int i=0, i<(nVert-2), i++){
-        diagPrinc += (vertices[i].x*vertices[i+1].y);
-        diagSec += (vertices[i].y*vertices[i+1].y);
+    for(int i=0; i<(nVert-2); i++){
+        diagPrinc += (vertices[i].getX()*vertices[i+1].getY());
+        diagSec += (vertices[i].getY()*vertices[i+1].getX());
     }
 
-    diagPrinc += (vertices[nVert-1].x*vertices[0].y);
-    diagSec += (vertices[nVert-1].y*vertices[0].x);
+    diagPrinc += (vertices[nVert-1].getX()*vertices[0].getY());
+    diagSec += (vertices[nVert-1].getY()*vertices[0].getX());
 
     area *= (diagPrinc-diagSec);
 
@@ -111,8 +128,8 @@ double Poligono::area(){
 }
 
 void Poligono::translada(float a, float b){
-    int nVert = numVertices(vertices);
-    for(int i=0; i<nVert, i++){
+    int nVert = numVertices();
+    for(int i=0; i<nVert; i++){
         vertices[i].translada(a,b);
         //vertices[i].x += a;
         //vertices[i].y += b;
@@ -121,32 +138,32 @@ void Poligono::translada(float a, float b){
 
 //EM TORNO DA ORIGEM. TRANSLADA PARA O P0 FICAR NA ORIGEM, ROTACIONA E TRANSLADA
 void Poligono::rotate(float theta, Ponto p0){
-    int nVertices = numVertices(vertices);
-    double anguloAnt;
+    int nVertices = numVertices();
+    double anguloAnt, cosAngAnt;
 
-    for(int i=0, i<nVertices, i++){
+    for(int i=0; i<nVertices; i++){
 
-        vertices[i].translada(-p0.x, -p0.y);
+        vertices[i].translada(-p0.getX(), -p0.getY());
 
-        if(!vertices[i].x && !vertices[i].y){
-            cosAngAnt = (vertices[i].norma())/vertices[i].x;
+        if(!vertices[i].getX() && !vertices[i].getY()){
+            cosAngAnt = (vertices[i].norma())/vertices[i].getX();
             anguloAnt = acos(cosAngAnt) * 180.0 / PI;
 
-            vertices[i].x = (vertices[i].norma()) * cos(anguloAnt + theta);
-            vertices[i].y = (vertices[i].norma()) * sin(anguloAnt + theta);
+            vertices[i].setX((vertices[i].norma()) * cos(anguloAnt + theta));
+            vertices[i].setY((vertices[i].norma()) * sin(anguloAnt + theta));
         }
 
-        vertices[i].translada(p0.x, p0.y);
+        vertices[i].translada(p0.getX(), p0.getY());
     }
 }
 
 void Poligono::print(){
-    int nVertices = numVertices(vertices);
+    int nVertices = numVertices();
 
-    for(int i=0, i<nVertices, i++){
+    for(int i=0; i<nVertices; i++){
         vertices[i].imprime();
         if(i<nVertices-1){
-            cout >> " -> ";
+            cout << " -> ";
         }
     }
 }

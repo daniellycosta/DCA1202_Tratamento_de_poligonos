@@ -1,12 +1,16 @@
-#include "ponto.h"
+#include"ponto.h"
 #include<math.h>
 #include<iostream>
 
 using namespace std;
 
 Ponto::Ponto(){
-    float x=0;
-    float y=0;
+   x = 0;
+   y = 0;
+}
+Ponto::Ponto(float _x,float _y){
+   x = _x;
+   y = _y;
 }
 
 Ponto::~Ponto(){

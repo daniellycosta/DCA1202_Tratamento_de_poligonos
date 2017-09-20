@@ -1,14 +1,19 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 #include "ponto.h"
+#include<cmath>
+#include<iostream>
+
+using namespace std;
 
 class Poligono : public Ponto{
 private:
-    Ponto *vertices;
+    Ponto* vertices;
 public:
     Poligono();
     ~Poligono();
-    operator + (Ponto _vertice);
+    Poligono operator =(Poligono _poligono);
+    Poligono operator+(Ponto _vertice);
     int numVertices();
     double area();
     void translada(float a, float b);
