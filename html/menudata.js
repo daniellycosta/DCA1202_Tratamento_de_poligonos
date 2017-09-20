@@ -1,12 +1,12 @@
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Related Pages",url:"pages.html"},
+{text:"Página Principal",url:"index.html"},
+{text:"Páginas relacionadas",url:"pages.html"},
 {text:"Classes",url:"annotated.html",children:[
-{text:"Class List",url:"annotated.html"},
-{text:"Class Index",url:"classes.html"},
-{text:"Class Hierarchy",url:"hierarchy.html"},
-{text:"Class Members",url:"functions.html",children:[
-{text:"All",url:"functions.html"},
-{text:"Functions",url:"functions_func.html"}]}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"}]}]}
+{text:"Lista de Componentes",url:"annotated.html"},
+{text:"Índice dos Componentes",url:"classes.html"},
+{text:"Hierarquia de Classes",url:"hierarchy.html"},
+{text:"Componentes Membros",url:"functions.html",children:[
+{text:"Todos",url:"functions.html"},
+{text:"Funções",url:"functions_func.html"}]}]},
+{text:"Arquivos",url:"files.html",children:[
+{text:"Lista de Arquivos",url:"files.html"}]}]}
