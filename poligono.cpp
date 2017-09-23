@@ -7,84 +7,47 @@
 using namespace std;
 
 Poligono::Poligono(){
-
-    vertices = nullptr;
-
-    /*vertices = new Ponto[100];
-
+    nVertices = 0;
     for(int i=0; i<100; i++){
         vertices[i].setXY(0.0,0.0);
-    }*/
+    }
 }
 
 Poligono::~Poligono(){
-    cout<<"[POL]Destruindo poligono...\n";
-    delete[]vertices;
+    //cout<<"[POL]Destruindo poligono...\n";
 }
 
-//Poligono Poligono::operator =(Poligono _poligono){
-//    if(vertices != nullptr){
-//        for(int i=0; i<numVertices(); i++){
-//            _poligono[i]->setXY(vertices[i].getX(), vertices[i].getY());
-//        }
-//    }
-//    return _poligono;
-//}
+void Poligono::operator+(Ponto _vertice){
+
+    int tamAntigo = nVertices;
+
+    if(tamAntigo == 100){
+        cout << "[POL] Erro! Poligono com tamanho max\n";
+        return;
+    }
+    else{
+        for(int i=0;i<tamAntigo;i++){
+            if(vertices[i].getX() == _vertice.getX() && vertices[i].getY() == _vertice.getY()){
+                cout << "[POL] Erro! Poligono jah possui esse ponto\n";
+                return;
+            }
+        }
+        vertices[tamAntigo].setXY(_vertice.getX(),_vertice.getY());
+        nVertices++;
+    }
+}
 
 
-//Poligono Poligono::operator+(Ponto _vertice){
-//    Poligono ret;
-//    int tamAntigo = numVertices();
 
-//    //conferindo se ainda se pode add vertices
-
-//    if(tamAntigo == 100){
-//        cout << "[POL] Erro! Poligono com tamanho max\n";
-//        return *this;
-//    }
-
-//    else{
-
-//        //conferindo se o usuario estah repetindo vertices
-
-//        for(int i=0; i<tamAntigo; i++){
-//            if(vertices[i].getX() == _vertice.getX() && vertices[i].getY() == _vertice.getY()){
-//                cout << "[POL] Erro! Poligono com vertices repetidos\n";
-//                return *this;
-//            }
-//        }
-
-//        //alocando novo array de vertices com tamanho novo
-
-//        ret = new Poligono[tamAntigo+1];
-//        memcpy(ret,vertices,tamAntigo*sizeof(Ponto));
-
-//        for(int i=0; i<tamAntigo; i++){
-//            ret[i].setXY(vertices[i].getX(), vertices[i].getY());
-//        }
-//        ret = vertices;
-//        ret[tamAntigo].setXY(_vertice.getX(),_vertice.getY());
-//        return ret;
-//    }
-//}
-
-
-/**@brief Funcao testa se tem dois vertices na coordenada (0,0), ja que o construtor inicializa todo o array com 0s
+/**@brief Funcao retorna o numero de vertices
 *
 *
 */
 
 int Poligono::numVertices(){
-    int i;
 
-    for(i=0; i<100; i++){
-        if(i<99 && !vertices[i].getX() && !vertices[i].getY()){
-            if(!vertices[i+1].getX() && !vertices[i+1].getY()){
-                return i;
-            }
-        }
-    }
-    return i+1;
+    return nVertices;
+
 }
 
 /**@brief Calcula a área do polígono usando as coordenadas de seus vértices
@@ -105,47 +68,37 @@ int Poligono::numVertices(){
 * */
 
 double Poligono::area(){
-    double area = 0.5;
-    int nVert = numVertices();
+    double area;
     double diagPrinc=0;
     double diagSec=0;
 
-    for(int i=0; i<(nVert-2); i++){
+    for(int i=0; i<(nVertices-1); i++){
         diagPrinc += (vertices[i].getX()*vertices[i+1].getY());
         diagSec += (vertices[i].getY()*vertices[i+1].getX());
     }
+    diagPrinc += (vertices[nVertices-1].getX()*vertices[0].getY());
+    diagSec += (vertices[nVertices-1].getY()*vertices[0].getX());
 
-    diagPrinc += (vertices[nVert-1].getX()*vertices[0].getY());
-    diagSec += (vertices[nVert-1].getY()*vertices[0].getX());
+    area = 0.5*(diagPrinc-diagSec);
 
-    area *= (diagPrinc-diagSec);
-
-    if(area<0){
-        return area*(-1);
-    }
-    else
-        return area;
+    return abs(area);
 }
 
 void Poligono::translada(float a, float b){
-    int nVert = numVertices();
-    for(int i=0; i<nVert; i++){
+    for(int i=0; i<nVertices; i++){
         vertices[i].translada(a,b);
-        //vertices[i].x += a;
-        //vertices[i].y += b;
     }
 }
 
 //EM TORNO DA ORIGEM. TRANSLADA PARA O P0 FICAR NA ORIGEM, ROTACIONA E TRANSLADA
-void Poligono::rotate(float theta, Ponto p0){
-    int nVertices = numVertices();
+void Poligono::rotaciona(float theta, Ponto p0){
     double anguloAnt, cosAngAnt;
 
     for(int i=0; i<nVertices; i++){
 
         vertices[i].translada(-p0.getX(), -p0.getY());
 
-        if(!vertices[i].getX() && !vertices[i].getY()){
+        if(vertices[i].getX() && vertices[i].getY()){
             cosAngAnt = (vertices[i].norma())/vertices[i].getX();
             anguloAnt = acos(cosAngAnt) * 180.0 / PI;
 
@@ -157,13 +110,20 @@ void Poligono::rotate(float theta, Ponto p0){
     }
 }
 
-void Poligono::print(){
-    int nVertices = numVertices();
+void Poligono::imprime(){
+    if(nVertices<3){
+        cout<<"[POL] Erro! Poligono com numero de vertices invalido\n";
+        return;
+    }
 
     for(int i=0; i<nVertices; i++){
         vertices[i].imprime();
-        if(i<nVertices-1){
+        if(i<nVertices){
             cout << " -> ";
         }
     }
+    vertices[0].imprime();
+    cout<<endl;
 }
+
+

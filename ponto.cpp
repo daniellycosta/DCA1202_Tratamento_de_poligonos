@@ -14,7 +14,7 @@ Ponto::Ponto(float _x,float _y){
 }
 
 Ponto::~Ponto(){
- cout << "[PON] Destruindo ponto...\n";
+ //cout << "[PON] Destruindo ponto...\n";
 }
 
 void Ponto::setX(float _x){
@@ -51,7 +51,6 @@ Ponto Ponto::operator -(Ponto p1){
     return ret;
 }
 
-//como add nova origem ao ponto?
 double Ponto::norma(){
     return (sqrt((x*x) + (y*y)));
 }
@@ -62,5 +61,5 @@ void Ponto::translada(float a, float b){
 }
 
 void Ponto::imprime(){
-    cout << "(" << x << ", " << y << ")\n";
+    cout << "(" << x << ", " << y << ")";
 }

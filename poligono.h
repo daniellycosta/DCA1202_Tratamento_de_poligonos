@@ -7,18 +7,18 @@
 using namespace std;
 
 class Poligono : public Ponto{
-private:
-    Ponto* vertices;
+protected:
+    Ponto vertices[100];
+    int nVertices;
 public:
     Poligono();
     ~Poligono();
-    Poligono operator =(Poligono _poligono);
-    Poligono operator+(Ponto _vertice);
+    void operator+(Ponto _vertice);
     int numVertices();
     double area();
     void translada(float a, float b);
-    void rotate(float theta, Ponto p0);
-    void print();
+    void rotaciona(float theta, Ponto p0);
+    void imprime();
 };
 
 #endif // POLYGON_H

@@ -1,6 +1,9 @@
 #ifndef POINT_H
 #define POINT_H
+#include<cmath>
+#include<iostream>
 
+using namespace std;
 
 class Ponto{
 private:
