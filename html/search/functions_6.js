@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['setx',['setX',['../class_ponto.html#a22129ad4dbf8019c479021d70a9f6774',1,'Ponto']]],
-  ['setxy',['setXY',['../class_ponto.html#a827488219a7da184d440f687cec49ce6',1,'Ponto']]],
-  ['sety',['setY',['../class_ponto.html#a2d9e5b9fade9d3f3f21122a2dc2f5e11',1,'Ponto']]]
+  ['retangulo',['Retangulo',['../class_retangulo.html#a699241159bbcd027874b8ba9672c3e40',1,'Retangulo']]],
+  ['rotaciona',['rotaciona',['../class_poligono.html#a7759cc440f8f531383068fed1ce07f90',1,'Poligono']]]
 ];

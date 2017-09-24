@@ -42,7 +42,7 @@ void Poligono::operator+(Ponto _vertice){
     }
 }
 
-/**@brief Função de adicionar vertice:
+/**@brief Função de adicionar vértice:
 *@details Faz a mesma coisa que a sobrecarga acima. Essa alternativa precisou ser criada para a implementação
 * do construtor do retângulo.
 **/
@@ -125,15 +125,19 @@ double Poligono::area(){
 }
 
 /**@brief Funcao para transladar os vértices do polígono:
- * @details
-*/
+ * @details Percorre os vértices do polígono transladando-os. Para isso, são somadas as coordenadas dos
+ * vértices, os valores fornecidos pelo usuário como parâmetros.
+**/
 void Poligono::translada(float a, float b){
     for(int i=0; i<nVertices; i++){
         vertices[i].translada(a,b);
     }
 }
 
-//EM TORNO DA ORIGEM. TRANSLADA PARA O P0 FICAR NA ORIGEM, ROTACIONA E TRANSLADA
+/**@brief Funcao para rotacionar polígono:
+ * @details Percorre os vértices do polígono transladando-os em relação ao ponto -p0, para que assim o possa-se
+ *  aplicar o algoritmo de rotação no entorno da origem. Em seguida, translada-se o polígono de volta para a posição inicial.
+**/
 void Poligono::rotaciona(float theta, Ponto p0){
     float angRad = theta * 180.0 / PI;
     float novoX,novoY;
@@ -150,6 +154,9 @@ void Poligono::rotaciona(float theta, Ponto p0){
     }
 }
 
+/**@brief Funcao para imprimir polígono:
+ * @details Imprime o polígono, vértice a vértice, se este for válido. Ou seja, se o polígono possuir no mínimo 3 vértices.
+**/
 void Poligono::imprime(){
     if(nVertices<3){
         cout<<"[POL] Erro! Poligono com numero de vertices invalido\n";
