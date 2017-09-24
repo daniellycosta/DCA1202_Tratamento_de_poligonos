@@ -7,7 +7,7 @@
 using namespace std;
 
 class Poligono{
-protected:
+private:
     Ponto vertices[100];
     int nVertices;
 public:
