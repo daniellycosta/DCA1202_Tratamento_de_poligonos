@@ -6,14 +6,14 @@
 
 using namespace std;
 
-class Poligono : public Ponto{
+class Poligono{
 protected:
     Ponto vertices[100];
     int nVertices;
 public:
     Poligono();
-    ~Poligono();
     void operator+(Ponto _vertice);
+    void addVert(Ponto _vertice);
     int numVertices();
     double area();
     void translada(float a, float b);

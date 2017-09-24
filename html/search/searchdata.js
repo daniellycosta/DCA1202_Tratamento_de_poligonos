@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "adnpr",
+  0: "adginoprst",
   1: "pr",
-  2: "an",
+  2: "aginopst",
   3: "d"
 };
 
@@ -16,9 +16,9 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "Todos",
+  0: "All",
   1: "Classes",
-  2: "Funções",
-  3: "Páginas"
+  2: "Functions",
+  3: "Pages"
 };
 

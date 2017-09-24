@@ -13,12 +13,27 @@ Poligono::Poligono(){
     }
 }
 
-Poligono::~Poligono(){
-    //cout<<"[POL]Destruindo poligono...\n";
-}
-
 void Poligono::operator+(Ponto _vertice){
 
+    int tamAntigo = nVertices;
+
+    if(tamAntigo == 100){
+        cout << "[POL] Erro! Poligono com tamanho max\n";
+        return;
+    }
+    else{
+        for(int i=0;i<tamAntigo;i++){
+            if(vertices[i].getX() == _vertice.getX() && vertices[i].getY() == _vertice.getY()){
+                cout << "[POL] Erro! Poligono jah possui esse ponto\n";
+                return;
+            }
+        }
+        vertices[tamAntigo].setXY(_vertice.getX(),_vertice.getY());
+        nVertices++;
+    }
+}
+
+void Poligono::addVert(Ponto _vertice){
     int tamAntigo = nVertices;
 
     if(tamAntigo == 100){
@@ -92,21 +107,18 @@ void Poligono::translada(float a, float b){
 
 //EM TORNO DA ORIGEM. TRANSLADA PARA O P0 FICAR NA ORIGEM, ROTACIONA E TRANSLADA
 void Poligono::rotaciona(float theta, Ponto p0){
-    double anguloAnt, cosAngAnt;
+    float angRad = theta * 180.0 / PI;
+    float novoX,novoY;
 
-    for(int i=0; i<nVertices; i++){
+    for(int i=0;i<nVertices;i++){
+        vertices[i].translada(-p0.getX(),-p0.getY());
 
-        vertices[i].translada(-p0.getX(), -p0.getY());
+        novoX = vertices[i].getX()*cos(angRad) - vertices[i].getY()*sin(angRad);
+        novoY = vertices[i].getX()*sin(angRad) + vertices[i].getY()*cos(angRad);
 
-        if(vertices[i].getX() && vertices[i].getY()){
-            cosAngAnt = (vertices[i].norma())/vertices[i].getX();
-            anguloAnt = acos(cosAngAnt) * 180.0 / PI;
+        vertices[i].setXY(novoX,novoY);
 
-            vertices[i].setX((vertices[i].norma()) * cos(anguloAnt + theta));
-            vertices[i].setY((vertices[i].norma()) * sin(anguloAnt + theta));
-        }
-
-        vertices[i].translada(p0.getX(), p0.getY());
+        vertices[i].translada(p0.getX(),p0.getY());
     }
 }
 

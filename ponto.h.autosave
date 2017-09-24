@@ -5,11 +5,6 @@
 
 using namespace std;
 
-/**@brief
-*
-*
-*/
-
 class Ponto{
 private:
     float x,y;
